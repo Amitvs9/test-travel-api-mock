@@ -1,10 +1,8 @@
 package com.av.assignment.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,33 +15,22 @@ import org.springframework.security.oauth2.client.token.grant.client.ClientCrede
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
 	
-	@Value("${oauth2.token-url:http://localhost:8080/oauth/token}")
+	@Value("${oauth2.token-url}")
 	private String tokenUrl;
 
-	@Value("${oauth2.client-id:travel-api-client}")
+	@Value("${oauth2.client-id}")
 	private String clientId;
 
-	@Value("${oauth2.client-secret:psw}")
+	@Value("${oauth2.client-secret}")
 	private String clientSecret;
 
-	@Value("${oauth2.grant-type:client_credentials}")
+	@Value("${oauth2.grant-type}")
 	private String grantType;
 
 	 @Override
 	    protected void configure(HttpSecurity httpSecurity) throws Exception {
 	        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
 	    }
-	
-	/*
-	 * @Override protected void configure(HttpSecurity http) throws Exception { http
-	 * .csrf().disable() .authorizeRequests().anyRequest().authenticated() .and()
-	 * .httpBasic(); }
-	 * 
-	 * @Autowired public void configureGlobal(AuthenticationManagerBuilder auth)
-	 * throws Exception { String password = passwordEncoder().encode("password");
-	 * auth.inMemoryAuthentication().withUser("admin").password(password).roles(
-	 * "ADMIN"); }
-	 */
 	
 	@Bean(name = "oAuth2RestTemplate")
 	public OAuth2RestTemplate oauth2RestTemplate() {

@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 
 import com.av.assignment.error.AirportNotFoundException;
-import com.av.assignment.error.RestTemplateResponseErrorHandler;
 import com.av.assignment.model.AirportResponseList;
 import com.av.assignment.model.AirportRespose;
 import com.av.assignment.model.Fare;
@@ -26,28 +26,18 @@ public class AirportServiceImpl implements AirportService {
 	private static final String CODE = "CODE";
 	private static final String NAME = "NAME";
 	private static final String DESC = "DESC";
+	private static final String UNAUTHORISED = "UNAUTHORISED";
+	private static final String BAD_REQUEST = "BAD_REQUEST";
 	
-	@Value("${mock.fareurl:http://localhost:8080/fares/{origin_code}/{destination_code}}")
+	@Value("${mock.fareurl}")
 	private String fareUrl;
 
-	@Value("${mock.searchurl:http://localhost:8080/airports/{code}}")
+	@Value("${mock.searchurl}")
 	private String searchUrl;
 
-	@Value("${mock.airportsurl:http://localhost:8080/airports}")
+	@Value("${mock.airportsurl}")
 	private String airportsUrl;
 
-	public String getAirportsUrl() {
-		return airportsUrl;
-	}
-
-	public String getFareUrl() {
-		return fareUrl;
-	}
-
-	public String getSearchUrl() {
-		return searchUrl;
-	}
-	
 	@Autowired
 	OAuth2RestTemplate oAuth2RestTemplate;
 
@@ -83,7 +73,16 @@ public class AirportServiceImpl implements AirportService {
 	
 	private AirportRespose getAllAirports() {
 		ResponseEntity<AirportRespose> response = oAuth2RestTemplate.getForEntity(airportsUrl, AirportRespose.class);
-		if(response.getStatusCode()!=HttpStatus.OK) {
+		if(response.getStatusCode()==HttpStatus.NOT_FOUND) {
+			throw new AirportNotFoundException();
+		}
+		else if(response.getStatusCode()==HttpStatus.BAD_REQUEST) {
+			throw new RuntimeException();
+		}
+		else if(response.getStatusCode()==HttpStatus.UNAUTHORIZED) {
+			throw new AccessDeniedException(UNAUTHORISED);
+		}
+		else if(response.getStatusCode()!=HttpStatus.OK) {
 			throw new AirportNotFoundException();
 		}
 		return response.getBody();
@@ -94,7 +93,16 @@ public class AirportServiceImpl implements AirportService {
 		Map<String, Object> params = new HashMap<>();
 		params.put("code", code);
 		ResponseEntity<Location> response = oAuth2RestTemplate.getForEntity(searchUrl, Location.class,params);
-		if(response.getStatusCode()!=HttpStatus.OK) {
+		if(response.getStatusCode()==HttpStatus.NOT_FOUND) {
+			throw new AirportNotFoundException();
+		}
+		else if(response.getStatusCode()==HttpStatus.BAD_REQUEST) {
+			throw new RuntimeException();
+		}
+		else if(response.getStatusCode()==HttpStatus.UNAUTHORIZED) {
+			throw new AccessDeniedException(UNAUTHORISED);
+		}
+		else if(response.getStatusCode()!=HttpStatus.OK) {
 			throw new AirportNotFoundException();
 		}
 		return response.getBody();
@@ -106,7 +114,16 @@ public class AirportServiceImpl implements AirportService {
 		params.put("origin_code", source);
 		params.put("destination_code", destination);
 		ResponseEntity<Fare> response = oAuth2RestTemplate.getForEntity(fareUrl, Fare.class,params);
-		if(response.getStatusCode()!=HttpStatus.OK) {
+		if(response.getStatusCode()==HttpStatus.NOT_FOUND) {
+			throw new AirportNotFoundException();
+		}
+		else if(response.getStatusCode()==HttpStatus.BAD_REQUEST) {
+			throw new RuntimeException();
+		}
+		else if(response.getStatusCode()==HttpStatus.UNAUTHORIZED) {
+			throw new AccessDeniedException(UNAUTHORISED);
+		}
+		else if(response.getStatusCode()!=HttpStatus.OK) {
 			throw new AirportNotFoundException();
 		}
 		return response.getBody();

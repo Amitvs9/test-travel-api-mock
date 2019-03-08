@@ -14,7 +14,7 @@ import com.av.assignment.service.AirportService;
 
 @RestController
 @RequestMapping("/travel")
-public class AirportRestResources {
+public class AirportController {
 
 	@Autowired
 	private AirportService airportService;

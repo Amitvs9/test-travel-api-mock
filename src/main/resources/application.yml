@@ -5,3 +5,13 @@ spring:
   security.enabled=false
   management.security.enabled=false
   security.basic.enabled=false
+  
+oauth2:
+  client-id: travel-api-client
+  client-secret: psw
+  token-url: http://localhost:8080/oauth/token
+  grant-type: client_credentials
+mock:
+  fareurl: http://localhost:8080/fares/{origin_code}/{destination_code}
+  searchurl: http://localhost:8080/airports/{code}
+  airportsurl: http://localhost:8080/airports
