@@ -1,0 +1,7 @@
+server:
+  port: 9091
+  
+spring:
+  security.enabled=false
+  management.security.enabled=false
+  security.basic.enabled=false
