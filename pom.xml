@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.3.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath /> 
 	</parent>
 	<groupId>com.av.assignment</groupId>
 	<artifactId>test-travel-api-mock</artifactId>
@@ -17,6 +17,10 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<spring-actuator.version>2.0.3.RELEASE</spring-actuator.version>
+		<spring-oauth2.version>2.0.6.RELEASE</spring-oauth2.version>
+		<javax-rs.version>2.0</javax-rs.version>
+		<jasypt.version>1.9.2</jasypt.version>
 	</properties>
 
 	<dependencies>
@@ -27,7 +31,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>2.0.3.RELEASE</version>
+			<version>${spring-actuator.version}</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,7 +45,17 @@
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
-			<version>2.0.6.RELEASE</version>
+			<version>${spring-oauth2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${javax-rs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>${jasypt.version}</version>
 		</dependency>
 	</dependencies>
 

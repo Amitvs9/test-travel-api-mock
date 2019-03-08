@@ -1,17 +1,18 @@
+debug: false
 server:
-  port: 9091
-  
-spring:
-  security.enabled=false
-  management.security.enabled=false
-  security.basic.enabled=false
-  
+  port: 9090
+  context-path: /services
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.security: INFO
 oauth2:
   client-id: travel-api-client
   client-secret: psw
   token-url: http://localhost:8080/oauth/token
   grant-type: client_credentials
 mock:
-  fareurl: http://localhost:8080/fares/{origin_code}/{destination_code}
-  searchurl: http://localhost:8080/airports/{code}
+  fareurl: http://localhost:8080/fares/{origin}/{destination}
+  searchurl: http://localhost:8080/airports?
   airportsurl: http://localhost:8080/airports
+  
