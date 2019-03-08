@@ -1,7 +1,5 @@
 package com.av.assignment.model;
 
-import lombok.Value;
-
 public class Coordinates {
 
     private double latitude, longitude;

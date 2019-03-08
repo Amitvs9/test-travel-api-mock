@@ -3,8 +3,6 @@ package com.av.assignment.model;
 
 import java.util.Currency;
 
-import lombok.Value;
-
 public class Fare {
 
     double amount;

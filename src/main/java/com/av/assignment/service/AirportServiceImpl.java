@@ -1,16 +1,10 @@
 package com.av.assignment.service;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.hateoas.PagedResources;
-import org.springframework.hateoas.Resource;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
@@ -18,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
 import com.av.assignment.model.LocationList;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Service

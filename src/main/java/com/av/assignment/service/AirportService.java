@@ -1,8 +1,5 @@
 package com.av.assignment.service;
 
-import java.util.List;
-import java.util.concurrent.Callable;
-
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
 import com.av.assignment.model.LocationList;

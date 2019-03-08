@@ -3,7 +3,6 @@ package com.av.assignment.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
 
 public class LocationList {
 	
