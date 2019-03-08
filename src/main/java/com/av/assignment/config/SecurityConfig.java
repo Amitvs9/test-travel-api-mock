@@ -29,24 +29,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Value("${oauth2.grant-type:client_credentials}")
 	private String grantType;
 
-	
 	 @Override
-	    protected void configure(HttpSecurity http) throws Exception
-	    {
-	        http
-	         .csrf().disable()
-	         .authorizeRequests().anyRequest().authenticated()
-	         .and()
-	         .httpBasic();
+	    protected void configure(HttpSecurity httpSecurity) throws Exception {
+	        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
 	    }
-	  
-	    @Autowired
-	    public void configureGlobal(AuthenticationManagerBuilder auth)
-	            throws Exception
-	    {
-	    	String password = passwordEncoder().encode("password");
-	    	 auth.inMemoryAuthentication().withUser("admin").password(password).roles("ADMIN");
-	    }
+	
+	/*
+	 * @Override protected void configure(HttpSecurity http) throws Exception { http
+	 * .csrf().disable() .authorizeRequests().anyRequest().authenticated() .and()
+	 * .httpBasic(); }
+	 * 
+	 * @Autowired public void configureGlobal(AuthenticationManagerBuilder auth)
+	 * throws Exception { String password = passwordEncoder().encode("password");
+	 * auth.inMemoryAuthentication().withUser("admin").password(password).roles(
+	 * "ADMIN"); }
+	 */
 	
 	@Bean(name = "oAuth2RestTemplate")
 	public OAuth2RestTemplate oauth2RestTemplate() {

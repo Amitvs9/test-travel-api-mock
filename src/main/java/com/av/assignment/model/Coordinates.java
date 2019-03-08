@@ -1,5 +1,6 @@
 package com.av.assignment.model;
 
+
 public class Coordinates {
 
     private double latitude, longitude;
@@ -19,5 +20,7 @@ public class Coordinates {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+    
+    
 
 }

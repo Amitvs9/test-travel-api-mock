@@ -1,24 +1,20 @@
 package com.av.assignment.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class LocationList {
 	
-	private List<Location> location;
+	private List<Locations> locations;
+
+	public List<Locations> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(List<Locations> locations) {
+		this.locations = locations;
+	}
 	 
-    public LocationList() {
-    	location = new ArrayList<>();
-    }
-
-	public List<Location> getLocation() {
-		return location;
-	}
-
-	public void setLocation(List<Location> location) {
-		this.location = location;
-	}
  
 
 }

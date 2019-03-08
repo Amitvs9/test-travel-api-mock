@@ -6,13 +6,22 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-
 @JsonInclude(NON_NULL)
-public class Location {
+public class Location{
 
     private String code, name, description;
+    private Coordinates coordinates;
     private Location parent;
     private Set<Location> children;
+    
+    public Location(){
+    	
+    }
+    public Location(String code,String name,String description){
+    	this.code=code;
+    	this.name=name;
+    	this.description=description;
+    }
 	public String getCode() {
 		return code;
 	}
@@ -31,6 +40,12 @@ public class Location {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Coordinates getCoordinates() {
+		return coordinates;
+	}
+	public void setCoordinates(Coordinates coordinates) {
+		this.coordinates = coordinates;
+	}
 	public Location getParent() {
 		return parent;
 	}
@@ -44,5 +59,4 @@ public class Location {
 		this.children = children;
 	}
 
-    
 }
