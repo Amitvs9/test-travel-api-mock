@@ -5,7 +5,6 @@ import java.util.List;
 
 import lombok.Data;
 
-@Data
 public class LocationList {
 	
 	private List<Location> location;
@@ -13,6 +12,14 @@ public class LocationList {
     public LocationList() {
     	location = new ArrayList<>();
     }
+
+	public List<Location> getLocation() {
+		return location;
+	}
+
+	public void setLocation(List<Location> location) {
+		this.location = location;
+	}
  
 
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
+import com.av.assignment.model.LocationList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -49,9 +50,9 @@ public class AirportServiceImpl implements AirportService {
 
 	
 	@Override
-	public List<Object> getAllAirports() {
-		ResponseEntity<Object[]> response = oAuth2RestTemplate.getForEntity(airportsUrl, Object[].class);
-		return Arrays.asList(response.getBody());
+	public LocationList getAllAirports() {
+		ResponseEntity<LocationList> response = oAuth2RestTemplate.getForEntity(airportsUrl, LocationList.class);
+		return response.getBody();
 	}
 
 	@Override

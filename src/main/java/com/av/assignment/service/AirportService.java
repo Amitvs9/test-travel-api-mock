@@ -5,10 +5,11 @@ import java.util.concurrent.Callable;
 
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
+import com.av.assignment.model.LocationList;
 
 public interface AirportService {
 	
-	public List<Object>  getAllAirports();
+	public LocationList getAllAirports();
 	
 	public Location getAirportByCode(String code);
 	

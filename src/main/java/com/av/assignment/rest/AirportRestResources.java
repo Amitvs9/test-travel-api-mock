@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
+import com.av.assignment.model.LocationList;
 import com.av.assignment.service.AirportService;
 
 @RestController
@@ -25,7 +26,7 @@ public class AirportRestResources {
 	private AirportService airportService;
 	
 	@GetMapping("/airports")
-	public @ResponseBody List<Object> getAllAirports() {
+	public @ResponseBody LocationList getAllAirports() {
 
 		return airportService.getAllAirports();
 	}
