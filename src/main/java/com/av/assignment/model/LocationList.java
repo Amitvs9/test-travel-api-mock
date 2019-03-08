@@ -3,9 +3,9 @@ package com.av.assignment.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class LocationList {
 	
 	private List<Location> location;

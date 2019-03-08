@@ -8,18 +8,22 @@ import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
-import com.av.assignment.model.LocationList;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Service
 public class AirportServiceImpl implements AirportService {
 	
-	@Value("${mock.fareurl:http://localhost:8080/fares/{origin_code}/{destination_code}")
+	@Value("${mock.fareurl:http://localhost:8080/fares/{origin_code}/{destination_code}}")
 	private String fareUrl;
 
 	@Value("${mock.searchurl:http://localhost:8080/airports/{code}}")
@@ -43,26 +47,28 @@ public class AirportServiceImpl implements AirportService {
 	@Autowired
 	OAuth2RestTemplate oAuth2RestTemplate;
 
+	
 	@Override
-	public LocationList getAllAirports() {
-
-		return oAuth2RestTemplate.getForObject(airportsUrl, LocationList.class);
+	public List<Object> getAllAirports() {
+		ResponseEntity<Object[]> response = oAuth2RestTemplate.getForEntity(airportsUrl, Object[].class);
+		return Arrays.asList(response.getBody());
 	}
 
 	@Override
 	public Location getAirportByCode(String code) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("code", code);
-		return oAuth2RestTemplate.getForObject(searchUrl, Location.class,params);
+		ResponseEntity<Location> response = oAuth2RestTemplate.getForEntity(searchUrl, Location.class,params);
+		return response.getBody();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Callable<Fare> getAirFare(String source, String destination) {
+	public Fare getAirFare(String source, String destination) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("origin_code", source);
 		params.put("destination_code", destination);
-		return (Callable<Fare>) oAuth2RestTemplate.getForObject(fareUrl, Fare.class,params);
+		ResponseEntity<Fare> response = oAuth2RestTemplate.getForEntity(fareUrl, Fare.class,params);
+		return response.getBody();
 	}
 
 }

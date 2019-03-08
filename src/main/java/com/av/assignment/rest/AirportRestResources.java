@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.av.assignment.model.Fare;
 import com.av.assignment.model.Location;
-import com.av.assignment.model.LocationList;
 import com.av.assignment.service.AirportService;
 
 @RestController
@@ -24,7 +25,7 @@ public class AirportRestResources {
 	private AirportService airportService;
 	
 	@GetMapping("/airports")
-	public @ResponseBody LocationList getAllAirports() {
+	public @ResponseBody List<Object> getAllAirports() {
 
 		return airportService.getAllAirports();
 	}
@@ -35,7 +36,7 @@ public class AirportRestResources {
 	}
 
 	@GetMapping("/fares/{source}/{destination}")
-	public Callable<Fare> getAirFare(@PathVariable("source") String source, @PathVariable("destination") String destination) {
+	public Fare getAirFare(@PathVariable("source") String source, @PathVariable("destination") String destination) {
 
 		return airportService.getAirFare(source,destination);
 	}
