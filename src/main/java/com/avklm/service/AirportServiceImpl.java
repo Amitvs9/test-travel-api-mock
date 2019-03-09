@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.avklm.data.AirportDataImpl;
+import com.avklm.apidata.AirportRestAPIDataImpl;
 import com.avklm.error.AirportCustomConstants;
 import com.avklm.error.AirportCustomException;
 import com.avklm.metrics.MetricsHelper;
@@ -25,7 +25,7 @@ public class AirportServiceImpl implements AirportService{
 	private static Logger log = LoggerFactory.getLogger(AirportFareServiceImpl.class);
 	
 	@Autowired
-	AirportDataImpl restClient;
+	AirportRestAPIDataImpl restClient;
 	
 	@Override
 	public List<RestApiMetric>  metricsData(){

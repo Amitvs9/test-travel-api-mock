@@ -10,10 +10,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableAsync
 @SpringBootApplication
-public class TravelApp {
+public class AirportApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TravelApp.class, args);
+		SpringApplication.run(AirportApplication.class, args);
 	}
 	
 	@Bean(name = "asyncExecutor")

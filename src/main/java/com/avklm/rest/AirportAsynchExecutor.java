@@ -12,7 +12,7 @@ import com.avklm.model.Location;
 import com.avklm.service.AirportFareService;
 
 @Component
-public class RestAsynchExecutor {
+public class AirportAsynchExecutor {
 
 	@Autowired
 	private AirportFareService fareService;

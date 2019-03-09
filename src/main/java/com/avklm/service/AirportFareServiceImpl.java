@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.avklm.data.AirportDataImpl;
+import com.avklm.apidata.AirportRestAPIDataImpl;
 import com.avklm.error.AirportCustomException;
 import com.avklm.model.FareDetails;
 import com.avklm.model.Location;
@@ -20,7 +20,7 @@ import com.avklm.rest.AirportFareController;
 public class AirportFareServiceImpl implements AirportFareService{
 	private static Logger log = LoggerFactory.getLogger(AirportFareServiceImpl.class);
 	@Autowired
-	AirportDataImpl restClient;
+	AirportRestAPIDataImpl restClient;
 	
 	@Async("asyncExecutor")
 	@Override

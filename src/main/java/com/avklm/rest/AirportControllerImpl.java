@@ -1,7 +1,5 @@
 package com.avklm.rest;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class AirportControllerImpl implements AirportController{
 	@Autowired
 	private AirportFareService airportFareService;
 
-	@RequestMapping(method = GET, value = "/search/code")
+	@GetMapping("/search/code")
 	public List<Location> populateOriginDest(@RequestParam("term") String term,
 			@RequestParam(value = "lang", defaultValue = "en") String lang) throws AirportCustomException {
 
@@ -45,7 +43,7 @@ public class AirportControllerImpl implements AirportController{
 		return airportService.getAirports(page,size,term,sort);
 	}
 
-	@RequestMapping(method = GET, value = "/rest/metrics")
+	@GetMapping("/rest/metrics")
 	public List<RestApiMetric>  getMetricsData() throws AirportCustomException{
 
 		return airportService.metricsData();

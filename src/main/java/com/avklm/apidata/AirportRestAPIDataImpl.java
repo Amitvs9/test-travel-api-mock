@@ -1,4 +1,4 @@
-package com.avklm.data;
+package com.avklm.apidata;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,9 +27,9 @@ import com.avklm.model.Location;
 
 
 @Component
-public class AirportDataImpl {
+public class AirportRestAPIDataImpl {
 
-	private static Logger log = LoggerFactory.getLogger(AirportDataImpl.class);
+	private static Logger log = LoggerFactory.getLogger(AirportRestAPIDataImpl.class);
 	@Autowired
 	private SecurityConfig airportConfig;
 

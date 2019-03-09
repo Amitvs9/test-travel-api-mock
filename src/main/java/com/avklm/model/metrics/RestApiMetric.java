@@ -6,10 +6,13 @@ import java.util.List;
 
 public class RestApiMetric implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String restService;
 	private String methodType;
 	private Long totalRequest=0L;
-	//private Map<Long, Long> responseCodeMap = new HashMap<>();
 	private Long totalTime=0L;
 	private Long minRespTime;
 	private Long maxRespTime;
