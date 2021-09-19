@@ -1,4 +1,4 @@
-# Assignment
+# Application springboot jpa 
 
 #Resource endpoints:
  • Retrieve a list of airports:
